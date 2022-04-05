@@ -59,7 +59,7 @@ if(isset($taskId) && isset($accessToken)) {
     }
     
 
-    $dsn = 'mysql:dbname=selldb;host=127.0.0.1';
+    $dsn = 'mysql:dbname=sell_update;host=127.0.0.1';
     $user = 'root';
     $config = require './configuration.php';
     $password = $config['db_pass'];
