@@ -126,8 +126,11 @@ class InventoryTaskApi
      * @return void
      */
     public function createInventoryTask($createInventoryTaskRequest, $xEBAYCMARKETPLACEID = null)
-    {
-        $this->createInventoryTaskWithHttpInfo($createInventoryTaskRequest, $xEBAYCMARKETPLACEID);
+    {   
+        // echo 'test1';
+        $headers = $this->createInventoryTaskWithHttpInfo($createInventoryTaskRequest, $xEBAYCMARKETPLACEID);
+        // $task_id = $headers->location[0];
+        return $headers;
     }
 
     /**
@@ -165,7 +168,7 @@ class InventoryTaskApi
             }
 
             $statusCode = $response->getStatusCode();
-
+            echo $statusCode;
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
@@ -178,8 +181,10 @@ class InventoryTaskApi
                     (string) $response->getBody()
                 );
             }
-
-            return [null, $statusCode, $response->getHeaders()];
+            // echo 'test2';
+            // var_dump($response->getHeaders());
+            // return [null, $statusCode, $response->getHeaders()];
+            return $response->getHeaders();
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {

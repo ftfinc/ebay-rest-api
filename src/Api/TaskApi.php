@@ -39,6 +39,7 @@ use Ansas\Ebay\Configuration;
 use Ansas\Ebay\HeaderSelector;
 use Ansas\Ebay\ObjectSerializer;
 
+header("Content-type: text/html; charset=utf-8");
 /**
  * TaskApi Class Doc Comment
  *
@@ -276,7 +277,6 @@ class TaskApi
         }
 
 
-
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 []
@@ -490,7 +490,7 @@ class TaskApi
                     } else {
                         $content = (string) $response->getBody();
                     }
-
+                    echo 'test';
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
@@ -623,6 +623,7 @@ class TaskApi
     public function getResultFile($taskId)
     {
         list($response) = $this->getResultFileWithHttpInfo($taskId);
+
         return $response;
     }
 
@@ -638,11 +639,13 @@ class TaskApi
     public function getResultFileWithHttpInfo($taskId)
     {
         $request = $this->getResultFileRequest($taskId);
-
+        
         try {
             $options = $this->createHttpClientOption();
+           
             try {
                 $response = $this->client->send($request, $options);
+                // var_dump($response);
             } catch (RequestException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
@@ -680,6 +683,7 @@ class TaskApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        
                     }
 
                     return [
@@ -695,7 +699,7 @@ class TaskApi
             } else {
                 $content = (string) $response->getBody();
             }
-
+           
             return [
                 ObjectSerializer::deserialize($content, $returnType, []),
                 $response->getStatusCode(),
@@ -805,8 +809,6 @@ class TaskApi
         $httpBody = '';
         $multipart = false;
 
-
-
         // path params
         if ($taskId !== null) {
             $resourcePath = str_replace(
@@ -827,7 +829,7 @@ class TaskApi
                 []
             );
         }
-
+        // var_dump($headers);
         // for model (json/xml)
         if (count($formParams) > 0) {
             if ($multipart) {
@@ -862,13 +864,13 @@ class TaskApi
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
-
+        var_dump($headers);
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
             $headers
         );
-
+        // var_dump($headers);
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
@@ -1827,7 +1829,13 @@ class TaskApi
      */
     protected function createHttpClientOption()
     {
-        $options = [];
+        $options = [
+            // 'save_to' => '../zip/file.zip',
+            // 'Accept' => 'application/json'
+            // 'Accept-Charaset' => 'utf-8',
+            // 'Content-Type' => 'application/json',
+            // 'Accept-Encoding' => 'application/gzip'
+        ];
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
