@@ -79,10 +79,10 @@ class GetResultFile {
             
                             $details[] = $detail;
 
-                            $i++;
-                            if($i == 30) {
-                                break;
-                            }
+                            // $i++;
+                            // if($i == 30) {
+                            //     break;
+                            // }
                     }
                 }
             
