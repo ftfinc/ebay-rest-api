@@ -4,6 +4,8 @@ require './createInventoryTask.php';
 require './getInventoryTask.php';
 require './getResultFile_curl.php';
 
+date_default_timezone_set('Asia/Tokyo');
+
 try {
     // get accesstoken
     $ebay_api = new EbayAPI;
