@@ -13,18 +13,13 @@ try {
     //make task and get taskid
     $createTask = new CreateInventoryTask;
     $taskId = $createTask->createInventoryTask($accessToken);
+    echo 'task id: ' . $taskId . '<br>';
 
 } catch (Exception $e) {
     print("accesstoken taskId ERROR occured: ");
     print($e->getMessage());
 
 }
-
-
-// $taskId = 'task-16-1239960149';
-// $taskId = 'task-16-1131244006';
-// $accessToken = 'v^1.1#i^1#r^0#p^3#f^0#I^3#t^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';
-echo 'task id: ' . $taskId . '<br>';
 
 
 if(isset($taskId) && isset($accessToken)) {
