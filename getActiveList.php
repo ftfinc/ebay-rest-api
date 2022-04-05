@@ -43,7 +43,7 @@ if(isset($taskId) && isset($accessToken)) {
                 break;
             
             } else if($status == "CREATED" || $status == "QUEUED" || $status == "IN_PROCESS") {
-                    echo "status: " . $status . '<br>';
+
                     sleep(30);
                 
             } else {

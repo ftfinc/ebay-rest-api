@@ -1,5 +1,7 @@
 <?php
 
+
+
 class EbayAPI
 {
     protected $devID;
@@ -13,21 +15,22 @@ class EbayAPI
 
 
     public function __construct()
-    {
-        $this->devID = 'e30794c9-5639-4a0a-a71c-ae8169728ec2'; // these prod keys are different from sandbox keys
-        $this->appID = 'FTFINC-facereco-PRD-9a5965275-20384bb1';
-        $this->certID = 'PRD-a5965275af49-05e3-4f34-b0ae-7915';
-        $this->clientID = 'FTFINC-facereco-PRD-9a5965275-20384bb1';
+    {   
+        $config = require './configuration.php';
+
+        $this->devID = $config['production']['credentials']['devId']; // these prod keys are different from sandbox keys
+        $this->appID = $config['production']['credentials']['appId'];
+        $this->certID = $config['production']['credentials']['certId'];
+        $this->clientID = $config['production']['credentials']['clientId'];
         //set the Server to use (Sandbox or Production)
         $this->serverUrl = 'https://api.ebay.com/ws/api.dll';      // server URL different for prod and sandbox
         //the token representing the eBay user to assign the call with
 
-        $this->authCode = 'v%5E1.1%23i%5E1%23f%5E0%23p%5E3%23I%5E3%23r%5E1%23t%5EUl41XzM6QjU1MUQxNzVGNUM2RTRFRUQ1OURCOEJGOURBMjgwNTBfMV8xI0VeMjYw'; 
-        $this->authToken ="";
-        $this->refreshToken ="v^1.1#i^1#r^1#p^3#f^0#I^3#t^Ul4xMF85OjAxMjcxNzg5RkMyRTUyNjk2NjE4MDIwOEQ4MUM2MTg2XzJfMSNFXjI2MA==";
-        $this->ruName= "FTF_INC-FTFINC-facereco-iouofn";
+        $this->authCode = ''; 
+        $this->authToken = '';
+        $this->refreshToken =$config['production']['refreshToken'];
+        $this->ruName= $config['production']['ruName'];
 
-        $this->paypalEmailAddress= 'PAYPAL_EMAIL_ADDRESS';
         
     }
 
@@ -57,8 +60,7 @@ return $url;
         if($json != null)
         {   
             var_dump($json);
-            // $this->authToken = $json["access_token"];
-            // $this->refreshToken = $json["refresh_token"]; 
+       
         } 
     }
 
@@ -88,15 +90,5 @@ return $url;
         } 
     }
 }
-
-// $ebay_api = new EbayAPI;
-// $url = $ebay_api->firstAuthAppToken();
-// echo $url;
-
-// $ebay_api->authorizationToken();
-// echo 'accesstoken :' . $ebayapi->authToken;
-// echo 'refreshToken :' . $ebayapi->refreshTokeh;
-
-// $ebay_api->refreshToken();
 
 ?>

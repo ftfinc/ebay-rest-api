@@ -74,7 +74,7 @@ class GetResultFile {
 
                 } else {
                    
-                    $i = 0;
+                    // $i = 0;
                     foreach($xml->ActiveInventoryReport->SKUDetails as $detail){
             
                             $details[] = $detail;
