@@ -61,7 +61,8 @@ if(isset($taskId) && isset($accessToken)) {
 
     $dsn = 'mysql:dbname=selldb;host=127.0.0.1';
     $user = 'root';
-    $password = 'Mah4pFoyUh,2';
+    $config = require './configuration.php';
+    $password = $config['db_pass'];
 
     try {
         $dbh = new PDO($dsn, $user, $password);
