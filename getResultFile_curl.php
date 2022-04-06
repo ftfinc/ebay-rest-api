@@ -74,15 +74,15 @@ class GetResultFile {
 
                 } else {
                    
-                    // $i = 0;
+                    $i = 0;
                     foreach($xml->ActiveInventoryReport->SKUDetails as $detail){
             
                             $details[] = $detail;
 
-                            // $i++;
-                            // if($i == 30) {
-                            //     break;
-                            // }
+                            $i++;
+                            if($i == 30) {
+                                break;
+                            }
                     }
                 }
             
