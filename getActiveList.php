@@ -17,7 +17,7 @@ try {
     $createTask = new CreateInventoryTask;
     $taskId = $createTask->createInventoryTask($accessToken);
     echo 'task id: ' . $taskId . '<br>';
-    echo 'access token: ' .$accessToken . '<br>';
+    // echo 'access token: ' .$accessToken . '<br>';
 
 } catch (Exception $e) {
     // print("accesstoken taskId ERROR occured: ");
