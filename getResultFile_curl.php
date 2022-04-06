@@ -80,7 +80,7 @@ class GetResultFile {
                             $details[] = $detail;
 
                             $i++;
-                            if($i == 30) {
+                            if($i == 1000) {
                                 break;
                             }
                     }
