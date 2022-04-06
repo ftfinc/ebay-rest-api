@@ -13,10 +13,11 @@ try {
     $accessToken = $ebay_api->authToken;
     
     //make task and get taskid
+    // $taskId = 'task-16-1334876031';
     $createTask = new CreateInventoryTask;
     $taskId = $createTask->createInventoryTask($accessToken);
     echo 'task id: ' . $taskId . '<br>';
-    // echo 'access token: ' .$accessToken . '<br>';
+    echo 'access token: ' .$accessToken . '<br>';
 
 } catch (Exception $e) {
     // print("accesstoken taskId ERROR occured: ");
@@ -62,7 +63,7 @@ if(isset($taskId) && isset($accessToken)) {
     }
     
 
-    $dsn = 'mysql:dbname=sell_update;host=127.0.0.1';
+    $dsn = 'mysql:dbname=selldb;host=127.0.0.1';
     $user = 'root';
     $config = require './configuration.php';
     $password = $config['db_pass'];
