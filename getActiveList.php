@@ -11,16 +11,17 @@ try {
     $ebay_api = new EbayAPI;
     $ebay_api->refreshToken();
     $accessToken = $ebay_api->authToken;
-   
+    
     //make task and get taskid
     $createTask = new CreateInventoryTask;
     $taskId = $createTask->createInventoryTask($accessToken);
     echo 'task id: ' . $taskId . '<br>';
+    // echo 'access token: ' .$accessToken . '<br>';
 
 } catch (Exception $e) {
-    print("accesstoken taskId ERROR occured: ");
+    // print("accesstoken taskId ERROR occured: ");
     print($e->getMessage());
-
+    exit();
 }
 
 
@@ -55,7 +56,7 @@ if(isset($taskId) && isset($accessToken)) {
         
     } catch (Exception $e) {
 
-        print("ERROR :get Inventory list occur");
+        // print("ERROR :get Inventory list occur");
         print($e->getMessage());
         exit();
     }
