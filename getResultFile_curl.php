@@ -12,7 +12,7 @@ class GetResultFile {
         $url = 'https://api.ebay.com/sell/feed/v1/task/' . $taskId . '/download_result_file';
 
         $date = date("Y_m_d");
-        echo $date;
+        echo $date . '<br>';
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_HEADER, FALSE);
@@ -37,7 +37,7 @@ class GetResultFile {
         curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
 
         $savePath = './zip/' . $date . '.zip';
-        // echo $savePath;
+        echo $savePath . '<br>';
         $fp = fopen($savePath, 'w');
         curl_setopt($curl, CURLOPT_FILE, $fp);
 

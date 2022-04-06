@@ -168,7 +168,8 @@ class InventoryTaskApi
             }
 
             $statusCode = $response->getStatusCode();
-            echo $statusCode;
+            echo $statusCode . '<br>';
+            
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
