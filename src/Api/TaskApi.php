@@ -39,7 +39,7 @@ use Ansas\Ebay\Configuration;
 use Ansas\Ebay\HeaderSelector;
 use Ansas\Ebay\ObjectSerializer;
 
-header("Content-type: text/html; charset=utf-8");
+// header("Content-type: text/html; charset=utf-8");
 /**
  * TaskApi Class Doc Comment
  *
@@ -128,7 +128,8 @@ class TaskApi
      */
     public function createTask($createTaskRequest, $xEBAYCMARKETPLACEID = null)
     {
-        $this->createTaskWithHttpInfo($createTaskRequest, $xEBAYCMARKETPLACEID);
+        $headers = $this->createTaskWithHttpInfo($createTaskRequest, $xEBAYCMARKETPLACEID);
+        return $headers;
     }
 
     /**
@@ -180,7 +181,8 @@ class TaskApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            // return [null, $statusCode, $response->getHeaders()];
+            return $response->getHeaders();
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -355,8 +357,7 @@ class TaskApi
      */
     public function getInputFile($taskId)
     {
-        list($response) = $this->getInputFileWithHttpInfo($taskId);
-        return $response;
+        $this->getInputFileWithHttpInfo($taskId);
     }
 
     /**
