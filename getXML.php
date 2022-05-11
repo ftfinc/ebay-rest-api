@@ -8,8 +8,8 @@ class getXML {
 
     public function getXML($date) {
 
-        // curlの実行
-        $url = 'https://ftfsystem.work/ebayface/trading/set-tracking-file.php';
+        // curlの実行 xmlファイルの取得
+        $url = 'https://ftfsystem.work/ebayface/trading/set-tracking-xml.php';
 
         $curl = curl_init($url);
 
@@ -26,8 +26,6 @@ class getXML {
         // 受け取ったXMLレスポンスをPHPの連想配列へ変換
         $xmlObj = simplexml_load_string($xml);
         $xmlObj->asXML('./xml/' . $date . '.xml');
-        // $json = json_encode($xmlObj);
-        // $response = json_decode($json, true);
         $err = curl_error($curl);
 
         curl_close($curl);
